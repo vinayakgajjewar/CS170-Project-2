@@ -8,7 +8,7 @@ def feature_search(data):
     current_feature_set = []
 
     # For-loop to "walk" down the search tree
-    for i in range(1, len(data)):
+    for i in range(1, len(data[0])):
 
         print(f'We are on level {i}.')
 
@@ -16,7 +16,7 @@ def feature_search(data):
         best_accuracy_so_far = 0
 
         # Consider each feature separately
-        for j in range(1, len(data)):
+        for j in range(1, len(data[0])):
 
             # Check if the feature is already in our feature set
             if j not in current_feature_set:
@@ -33,6 +33,8 @@ def feature_search(data):
 
         print(f'On level {i}, we will add feature {feature_to_add_at_this_level} to the current set.')
         current_feature_set.append(feature_to_add_at_this_level)
+
+        # Print out current feature set
         print('Current feature set right now:')
         print(current_feature_set)
 
