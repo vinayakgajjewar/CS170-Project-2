@@ -1,10 +1,13 @@
 # feature_search.py
 
 import sys
-from accuracy import random_accuracy
+from validator import Validator
 
 def feature_search(data):
-    
+
+    # Initialize validator
+    v = Validator()
+
     current_feature_set = []
 
     # For-loop to "walk" down the search tree
@@ -24,7 +27,7 @@ def feature_search(data):
                 print(f'\tConsidering adding feature {j}.')
 
                 # Compute accuracy
-                accuracy = random_accuracy()
+                accuracy = v.random_accuracy()
                 if accuracy > best_accuracy_so_far:
                     best_accuracy_so_far = accuracy
                     feature_to_add_at_this_level = j
