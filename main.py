@@ -20,4 +20,6 @@ alg_number = int(input())
 
 # Read data file
 data_arr = read_data('small-test-dataset.txt')
+
+# Do feature search
 feature_search(data_arr)

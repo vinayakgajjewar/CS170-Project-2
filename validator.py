@@ -16,14 +16,20 @@ class Validator():
 
     # Calculate the distance between two data points
     # We use this function in leave-one-out cross validation
-    def calc_distance(self, point1, point2):
+    # Only use the features in the feature set
+    def calc_distance(self, point1, point2, feature_set):
         sum = 0
         for i in range(len(point1)):
-            sum += (point2[i] - point1[i]) ** 2
+            if i in feature_set:
+                sum += (point2[i] - point1[i]) ** 2
         return math.sqrt(sum)
 
     # Leave-one-out cross validation
-    def leave_one_out_cross_validation(self, data):
+    # feature_set is a list of indices (the first index is 0)
+    def leave_one_out_cross_validation(self, data, feature_set):
+
+        # Keep track of the number of correctly-classified instances
+        num_correct = 0
 
         # Loop through data points
         for i in range(len(data)):
@@ -33,8 +39,8 @@ class Validator():
             nearest_neighbor = -1
             nearest_neighbor_label = -1.0
 
-            print(f'We are on data point {i}.')
-            print(f'Label = {int(data[i][0])}.')
+            #print(f'We are on data point {i}.')
+            #print(f'Label = {int(data[i][0])}.')
 
             # Loop through every other data point
             for j in range(len(data)):
@@ -45,7 +51,7 @@ class Validator():
 
                     # Calculate distance
                     # First we get rid of the labels cuz we don't need them here
-                    distance = self.calc_distance(data[i][1:], data[j][1:])
+                    distance = self.calc_distance(data[i][1:], data[j][1:], feature_set)
 
                     # Check if it's the shortest distance we've observed so far
                     if distance < nearest_neighbor_dist:
@@ -54,12 +60,21 @@ class Validator():
                         nearest_neighbor_label = int(data[j][0])
 
             # Now that we've found the nearest neighbor
-            # Print it out
-            print(f'It\'s nearest neighbor is {nearest_neighbor} which has label {nearest_neighbor_label}.')
+            # Check if they share the same label
+            #print(f'It\'s nearest neighbor is {nearest_neighbor} which has label {nearest_neighbor_label}.')
+            if nearest_neighbor_label == data[i][0]:
+
+                # Why doesn't Python let me just do num_correct++ ?
+                num_correct += 1
+        
+        # Calculate accuracy
+        accuracy = num_correct / len(data)
+        print(f'The accuracy is {accuracy}.')
+        return accuracy
 
 
 # For testing lol
 if __name__ == '__main__':
-    data = read_data('small-test-dataset.txt')
+    data = read_data('Large-test-dataset.txt')
     v = Validator()
-    v.leave_one_out_cross_validation(data)
+    v.leave_one_out_cross_validation(data, [0, 14, 26])
