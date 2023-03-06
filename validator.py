@@ -16,13 +16,17 @@ class Validator():
     # Only use the features in the feature set
     def calc_distance(self, point1, point2, feature_set):
         sum = 0
+
+        # Start at 1 so we can skip the label
         for i in range(len(point1)):
-            if i in feature_set:
+
+            # We have to do i+1 here because feature_set is 1-indexed not 0-indexed
+            if (i + 1) in feature_set:
                 sum += (point2[i] - point1[i]) ** 2
         return math.sqrt(sum)
 
     # Leave-one-out cross validation
-    # feature_set is a list of indices (the first index is 0)
+    # feature_set is a list of indices (the first index is 1)
     def leave_one_out_cross_validation(self, data, feature_set):
 
         # Keep track of the number of correctly-classified instances
@@ -47,7 +51,6 @@ class Validator():
                     #print(f'\tComparing point {i} to point {j}.')
 
                     # Calculate distance
-                    # First we get rid of the labels cuz we don't need them here
                     distance = self.calc_distance(data[i][1:], data[j][1:], feature_set)
 
                     # Check if it's the shortest distance we've observed so far
@@ -63,15 +66,16 @@ class Validator():
 
                 # Why doesn't Python let me just do num_correct++ ?
                 num_correct += 1
-        
+
         # Calculate accuracy
         accuracy = num_correct / len(data)
         print(f'The accuracy is {accuracy}.')
         return accuracy
 
-
 # For testing lol
 if __name__ == '__main__':
-    data = read_data('Large-test-dataset.txt')
+    data = read_data('small-test-dataset.txt')
     v = Validator()
-    v.leave_one_out_cross_validation(data, [0, 14, 26])
+    # [1, 15, 27] for Large-test-dataset.txt
+    # [3, 5, 7] for small-test-dataset.txt
+    v.leave_one_out_cross_validation(data, [3, 5, 7])
