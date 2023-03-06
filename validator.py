@@ -6,9 +6,6 @@ from read_data import read_data
 
 class Validator():
 
-    def __init__(self):
-        print('Initializing validator.')
-
     # Return a random accuracy value
     # For testing purposes
     def random_accuracy(self):
