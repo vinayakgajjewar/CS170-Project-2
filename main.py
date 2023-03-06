@@ -2,7 +2,9 @@
 # This script runs a greedy feature selection algorithm
 
 from feature_search import feature_search
+from feature_search import backward_elimination
 from read_data import read_data
+import sys
 
 print('Welcome to Vinayak Gajjewar\'s feature selection algorithm.')
 
@@ -22,4 +24,9 @@ alg_number = int(input())
 data_arr = read_data('small-test-dataset.txt')
 
 # Do feature search
-feature_search(data_arr)
+if alg_number == 1:
+    feature_search(data_arr)
+elif alg_number == 2:
+    backward_elimination(data_arr)
+else:
+    sys.exit('Error: invalid input.')
