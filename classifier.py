@@ -31,7 +31,7 @@ class Classifier():
         # To keep track of the current nearest neighbor
         nearest_neighbor_dist = math.inf
         nearest_neighbor_label = -1
-        
+
         # Loop through every data point in our training set
         for i in range(len(self.train_data)):
 

@@ -6,7 +6,7 @@ from feature_search import backward_elimination
 from read_data import read_data
 import sys
 
-print('Welcome to Vinayak Gajjewar\'s feature selection algorithm.')
+print('Welcome to Vinayak Gajjewar (vgajj002)\'s feature selection algorithm.')
 
 # Get total number of features from user
 print('Please enter the total number of features: ', end='')

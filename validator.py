@@ -69,7 +69,7 @@ class Validator():
 
         # Calculate accuracy
         accuracy = num_correct / len(data)
-        print(f'The accuracy is {accuracy}.')
+        #print(f'The accuracy is {accuracy}.')
         return accuracy
 
 # For testing lol
@@ -78,4 +78,4 @@ if __name__ == '__main__':
     v = Validator()
     # [1, 15, 27] for Large-test-dataset.txt
     # [3, 5, 7] for small-test-dataset.txt
-    v.leave_one_out_cross_validation(data, [3, 5, 7])
+    print(v.leave_one_out_cross_validation(data, [3, 5, 7]))
