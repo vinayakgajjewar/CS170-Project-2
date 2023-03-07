@@ -37,7 +37,6 @@ class Validator():
 
             # To keep track of the current nearest neighbor
             nearest_neighbor_dist = math.inf
-            nearest_neighbor = -1
             nearest_neighbor_label = -1.0
 
             #print(f'We are on data point {i}.')
@@ -56,7 +55,6 @@ class Validator():
                     # Check if it's the shortest distance we've observed so far
                     if distance < nearest_neighbor_dist:
                         nearest_neighbor_dist = distance
-                        nearest_neighbor = j
                         nearest_neighbor_label = int(data[j][0])
 
             # Now that we've found the nearest neighbor
