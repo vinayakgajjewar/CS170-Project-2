@@ -12,6 +12,11 @@ def feature_search(data):
     # Start with an empty feature set
     current_feature_set = []
 
+    # Best accuracy overall
+    # We use this variable to find out when our accuracy starts decreasing
+    best_acc_overall = 0
+    best_feature_set_overall = []
+
     # For-loop to "walk" down the search tree
     for i in range(1, len(data[0])):
 
@@ -25,7 +30,8 @@ def feature_search(data):
 
             # Check if the feature is already in our feature set
             if j not in current_feature_set:
-                
+
+
                 #print(f'\tConsidering adding feature {j}.')
 
                 # Compute accuracy
@@ -48,6 +54,18 @@ def feature_search(data):
 
         # TODO: how can I check when our accuracy starts decreasing
         print(f'Accuracy at level {i} = {best_accuracy_so_far}.')
+
+        # Update best accuracy overall
+        if best_accuracy_so_far > best_acc_overall:
+            best_acc_overall = best_accuracy_so_far
+            best_feature_set_overall = current_feature_set
+        else:
+            print('Warning: accuracy has decreased or leveled off')
+
+        print()
+    
+    # Now let's print out our all-time best accuracy and the feature set that got it
+    print(f'Our final accuracy is {best_acc_overall} with feature set {best_feature_set_overall}.')
 
 
 def backward_elimination(data):
