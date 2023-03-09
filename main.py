@@ -1,7 +1,7 @@
 # main.py
 # This script runs a greedy feature selection algorithm
 
-from feature_search import feature_search
+from feature_search import forward_selection
 from feature_search import backward_elimination
 from read_data import read_data
 from validator import Validator
@@ -41,7 +41,7 @@ print(f'With no feature set, we have a baseline accuracy of {baseline_accuracy}.
 
 # Do feature search
 if alg_number == 1:
-    feature_search(data_arr)
+    forward_selection(data_arr)
 elif alg_number == 2:
     backward_elimination(data_arr)
 else:

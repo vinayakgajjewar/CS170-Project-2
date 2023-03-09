@@ -4,7 +4,7 @@ import sys
 from validator import Validator
 
 # TODO: we don't need two distinct functions for forward and backward search
-def feature_search(data):
+def forward_selection(data):
 
     # Initialize validator
     v = Validator()
