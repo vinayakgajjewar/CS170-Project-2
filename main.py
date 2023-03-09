@@ -8,6 +8,10 @@ import sys
 
 print('Welcome to Vinayak Gajjewar (vgajj002)\'s feature selection algorithm.')
 
+# Ask user what file they want to test
+print('Type in the name of the data file you want to test: ', end='')
+filename = input()
+
 # Get total number of features from user
 print('Please enter the total number of features: ', end='')
 num_features = int(input())
@@ -22,6 +26,7 @@ alg_number = int(input())
 
 # Read data file
 data_arr = read_data('small-test-dataset.txt')
+data_arr = read_data(filename)
 
 # Do feature search
 if alg_number == 1:
