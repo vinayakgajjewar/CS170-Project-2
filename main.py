@@ -27,6 +27,14 @@ alg_number = int(input())
 # Read data file
 data_arr = read_data(filename)
 
+# Print dataset attributes
+num_features = len(data_arr[0]) - 1
+num_instances = len(data_arr)
+print(f'This dataset has {num_features} features and {num_instances} instances.')
+
+# TODO: normalize data?
+# TODO: give baseline accuracy
+
 # Do feature search
 if alg_number == 1:
     feature_search(data_arr)
