@@ -76,7 +76,8 @@ def backward_elimination(data):
     v = Validator()
 
     # Start with a full feature set
-    current_feature_set = list(range(len(data[0])))
+    # Range is 1 to (# of features)
+    current_feature_set = list(range(1, len(data[0])))
 
     # Best accuracy overall
     # We use this variable to find out when our accuracy starts decreasing
