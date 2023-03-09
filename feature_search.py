@@ -63,6 +63,9 @@ def feature_search(data):
         else:
             print('Warning: accuracy has decreased or leveled off.')
 
+            # Once our accuracy starts decreasing, we'll stop searching
+            break
+
         print()
     
     # Now let's print out our all-time best accuracy and the feature set that got it
@@ -71,7 +74,7 @@ def feature_search(data):
 
 
 def backward_elimination(data):
-    
+
     # Initialize validator
     v = Validator()
 
@@ -106,7 +109,7 @@ def backward_elimination(data):
                 if accuracy > best_accuracy_so_far:
                     best_accuracy_so_far = accuracy
                     feature_to_omit_at_this_level = j
-        
+
         print(f'On level {i}, we will omit feature {feature_to_omit_at_this_level} from the current set.')
         current_feature_set.remove(feature_to_omit_at_this_level)
 
@@ -124,9 +127,12 @@ def backward_elimination(data):
             best_feature_set_overall = current_feature_set.copy()
         else:
             print('Warning: accuracy has decreased or leveled off.')
-        
+
+            # Once our accuracy starts decreasing, we'll stop searching
+            break
+
         print()
-    
+
     # Now let's print our all-time best accuracy and the feature set that got it
     print('Finished searching!')
     print(f'Our final accuracy is {best_acc_overall} with feature set {best_feature_set_overall}.')
