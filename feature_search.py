@@ -3,7 +3,7 @@
 import sys
 from validator import Validator
 
-
+# TODO: we don't need two distinct functions for forward and backward search
 def feature_search(data):
 
     # Initialize validator
@@ -52,15 +52,16 @@ def feature_search(data):
         print('Current feature set:')
         print(current_feature_set)
 
-        # TODO: how can I check when our accuracy starts decreasing
         print(f'Accuracy at level {i} = {best_accuracy_so_far}.')
 
         # Update best accuracy overall
         if best_accuracy_so_far > best_acc_overall:
             best_acc_overall = best_accuracy_so_far
-            best_feature_set_overall = current_feature_set
+
+            # We want a shallow copy
+            best_feature_set_overall = current_feature_set.copy()
         else:
-            print('Warning: accuracy has decreased or leveled off')
+            print('Warning: accuracy has decreased or leveled off.')
 
         print()
     
@@ -75,6 +76,11 @@ def backward_elimination(data):
 
     # Start with a full feature set
     current_feature_set = list(range(len(data[0])))
+
+    # Best accuracy overall
+    # We use this variable to find out when our accuracy starts decreasing
+    best_acc_overall = 0
+    best_feature_set_overall = []
 
     # For-loop to walk down the search tree
     # i starts at 1 because we don't want the label
@@ -107,6 +113,20 @@ def backward_elimination(data):
         print(current_feature_set)
 
         print(f'Accuracy at level {i} = {best_accuracy_so_far}.')
+
+        # Update best accuracy overall
+        if best_accuracy_so_far > best_acc_overall:
+            best_acc_overall = best_accuracy_so_far
+
+            # We want a shallow copy
+            best_feature_set_overall = current_feature_set.copy()
+        else:
+            print('Warning: accuracy has decreased or leveled off.')
+        
+        print()
+    
+    # Now let's print our all-time best accuracy and the feature set that got it
+    print(f'Our final accuracy is {best_acc_overall} with feature set {best_feature_set_overall}.')
 
 if __name__ == "__main__":
     sys.exit('Don\'t run this module directly.')
