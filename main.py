@@ -4,6 +4,7 @@
 from feature_search import feature_search
 from feature_search import backward_elimination
 from read_data import read_data
+from validator import Validator
 import sys
 
 print('Welcome to Vinayak Gajjewar (vgajj002)\'s feature selection algorithm.')
@@ -33,7 +34,10 @@ num_instances = len(data_arr)
 print(f'This dataset has {num_features} features and {num_instances} instances.')
 
 # TODO: normalize data?
-# TODO: give baseline accuracy
+# Give baseline accuracy (with no features)
+v = Validator()
+baseline_accuracy = v.leave_one_out_cross_validation(data_arr, [])
+print(f'With no feature set, we have a baseline accuracy of {baseline_accuracy}.')
 
 # Do feature search
 if alg_number == 1:
