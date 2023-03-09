@@ -25,7 +25,6 @@ print('Your choice: ', end='')
 alg_number = int(input())
 
 # Read data file
-data_arr = read_data('small-test-dataset.txt')
 data_arr = read_data(filename)
 
 # Do feature search
