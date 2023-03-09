@@ -66,6 +66,7 @@ def feature_search(data):
         print()
     
     # Now let's print out our all-time best accuracy and the feature set that got it
+    print('Finished searching!')
     print(f'Our final accuracy is {best_acc_overall} with feature set {best_feature_set_overall}.')
 
 
@@ -126,6 +127,7 @@ def backward_elimination(data):
         print()
     
     # Now let's print our all-time best accuracy and the feature set that got it
+    print('Finished searching!')
     print(f'Our final accuracy is {best_acc_overall} with feature set {best_feature_set_overall}.')
 
 if __name__ == "__main__":
